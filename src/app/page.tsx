@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { siteConfig, workCategories, workSamples, services } from "@/lib/data";
-import WorkCard from "@/components/WorkCard";
+import { siteConfig, workCategories, services } from "@/lib/data";
 
 export default function Home() {
-  const featuredWork = workSamples.slice(0, 3);
 
   return (
     <div className="bg-white dark:bg-zinc-950">
@@ -119,97 +117,92 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Work Categories Section */}
+      {/* Work Section - Protected */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
-              My Work
-            </h2>
-            <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-              Explore my portfolio across different content categories.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {workCategories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/work/${category.slug}`}
-                className="group p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-sm hover:shadow-lg transition-all border border-zinc-200 dark:border-zinc-700 hover:border-violet-300 dark:hover:border-violet-700"
-              >
-                <span className="text-4xl mb-4 block">{category.icon}</span>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                  {category.title}
-                </h3>
-                <p className="text-zinc-600 dark:text-zinc-400 text-sm">
-                  {category.description}
+          <div className="bg-gradient-to-br from-violet-50 to-rose-50 dark:from-zinc-900 dark:to-zinc-800 rounded-2xl p-8 md:p-12 border border-zinc-200 dark:border-zinc-700">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <svg
+                    className="w-5 h-5 text-violet-600 dark:text-violet-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium text-violet-600 dark:text-violet-400">
+                    Protected Portfolio
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
+                  My Work Samples
+                </h2>
+                <p className="text-zinc-600 dark:text-zinc-400 mb-6">
+                  Due to NDA agreements, my work portfolio is password-protected.
+                  I have samples across multiple categories including blogs,
+                  documentation, case studies, how-to guides, and lead magnets.
                 </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Work Section */}
-      <section className="py-20 bg-zinc-50 dark:bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-2">
-                Featured Work
-              </h2>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                Some of my recent projects and content pieces.
-              </p>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {workCategories.map((category) => (
+                    <span
+                      key={category.slug}
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-white dark:bg-zinc-800 rounded-full text-sm text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
+                    >
+                      <span>{category.icon}</span>
+                      {category.title}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href="/work"
+                  className="inline-flex items-center px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Access Portfolio
+                </Link>
+              </div>
+              <div className="hidden md:flex justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-violet-400 to-rose-400 rounded-2xl blur-2xl opacity-20" />
+                  <div className="relative grid grid-cols-2 gap-4">
+                    {workCategories.slice(0, 4).map((category, index) => (
+                      <div
+                        key={category.slug}
+                        className={`p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700 ${
+                          index % 2 === 1 ? "mt-8" : ""
+                        }`}
+                      >
+                        <span className="text-3xl block mb-2">
+                          {category.icon}
+                        </span>
+                        <p className="text-sm font-medium text-zinc-900 dark:text-white">
+                          {category.title}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-            <Link
-              href="/work"
-              className="hidden md:inline-flex items-center text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium transition-colors"
-            >
-              View All
-              <svg
-                className="ml-2 w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredWork.map((work) => (
-              <WorkCard key={work.id} work={work} />
-            ))}
-          </div>
-
-          <div className="mt-8 text-center md:hidden">
-            <Link
-              href="/work"
-              className="inline-flex items-center text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium transition-colors"
-            >
-              View All Work
-              <svg
-                className="ml-2 w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </Link>
           </div>
         </div>
       </section>

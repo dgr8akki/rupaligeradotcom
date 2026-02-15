@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Work | Rupali Gera",
   description:
     "Explore my portfolio of content writing work including blogs, documentation, case studies, how-to guides, and lead magnets.",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 };
 
 export default function WorkPage() {
