@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rupaligera.com"; // Update with your actual domain
+  const baseUrl = "https://rupaligera.vercel.app";
 
   // Only include public pages (not the password-protected Work section)
   return [
